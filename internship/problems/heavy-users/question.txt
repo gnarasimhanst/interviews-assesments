@@ -1,0 +1,43 @@
+PROBLEM 2: Find Heavy Users (25 minutes)
+-----------------------------------------
+
+Description:
+Given bank transactions, find all users who made 3 or more transactions within any 60-second window.
+
+Input Format:
+- First line: Integer n (transactions)
+- Next n lines: time user_id (space-separated, transactions sorted by time)
+
+Output Format:
+- Space-separated list of user IDs (unique, sorted ascending)
+
+Sample Input:
+6
+1 101
+30 101
+59 101
+65 101
+100 102
+101 102
+
+Sample Output:
+101
+
+Input:
+8
+10 201
+30 201
+50 201
+70 201
+5 202
+25 202
+45 202
+90 203
+
+Output:
+201 202
+
+Explanation: 
+- User 201: 4 transactions at 10, 30, 50, 70 within [10,70] (60s window)
+- User 202: 3 transactions at 5, 25, 45 within [5,65] (60s window)
+- User 203: Only 1 transaction, not flagged
