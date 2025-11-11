@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Internship Programming Test</title>
     <style>
         /* Print-optimized styles */
         @media print {
-            body { margin: 0; padding: 0; }
-            .page-break { page-break-before: always; }
-            .no-print { display: none; }
-            .form-field { border: 1px solid #000 !important; }
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .form-field {
+                border: 1px solid #000 !important;
+            }
         }
-        
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height: 1.6; 
-            padding: 20px; 
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
             max-width: 210mm;
             margin: 0 auto;
         }
-        
+
         /* Header Section */
         .header {
             display: table;
@@ -27,21 +40,22 @@
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
-        
-        .header-left, .header-right {
+
+        .header-left,
+        .header-right {
             display: table-cell;
             vertical-align: middle;
         }
-        
+
         .header-right {
             text-align: right;
             width: 30%;
         }
-        
+
         .student-info {
             margin: 5px 0;
         }
-        
+
         .form-field {
             display: inline-block;
             border-bottom: 1px solid #ccc;
@@ -49,46 +63,46 @@
             min-width: 200px;
             margin-left: 10px;
         }
-        
+
         .logo-placeholder {
             padding: 30px;
             text-align: center;
             color: #7f8c8d;
             background: transparent;
         }
-        
+
         /* Content Styles */
-        h1 { 
-            color: #2c3e50; 
+        h1 {
+            color: #2c3e50;
             margin-top: 0;
         }
-        
+
         .instructions {
             background: #64c8bd;
             border: 1px solid #ffeaa7;
+            color: #333;
             padding: 15px;
             margin: 20px 0;
             border-radius: 5px;
         }
-        
+
         .problem-section {
             background: #f9f9f9;
             padding: 0px 15px;
             margin: 0px 0;
-            border-left: 4px solid #3498db;
         }
-        
-        pre { 
-            background: #ecf0f1; 
-            padding: 10px; 
+
+        pre {
+            background: #ecf0f1;
+            padding: 10px;
             overflow-x: auto;
             border: 1px solid #bdc3c7;
         }
-        
+
         .page-break {
             margin-top: 30px;
         }
-        
+
         .footer {
             margin-top: 30px;
             padding-top: 15px;
@@ -96,6 +110,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- HEADER SECTION -->
@@ -113,7 +128,8 @@
         </div>
         <div class="header-right">
             <div class="logo-placeholder">
-                <img src="https://www.sitetracker.com/wp-content/uploads/2022/06/Sitetracker-Logo-Approved-2022_rgb-fullcolor.svg" />
+                <img
+                    src="https://www.sitetracker.com/wp-content/uploads/2022/06/Sitetracker-Logo-Approved-2022_rgb-fullcolor.svg" />
             </div>
         </div>
     </div>
@@ -133,21 +149,22 @@
 
     <!-- PROBLEM 1 -->
     <div class="problem-section">
-        <h2>Problem 1: Merge Overlapping Meetings (30 minutes)</h2>
-        
-        <p><strong>Description:</strong> Given meeting time intervals, merge all overlapping intervals and output the consolidated schedule.</p>
-        
+        <h2>Problem 1: Merge Overlapping Meetings</h2>
+
+        <p><strong>Description:</strong> Given meeting time intervals, merge all overlapping intervals and output the
+            consolidated schedule.</p>
+
         <p><strong>Input Format:</strong></p>
         <ul>
             <li>First line: Integer n (number of meetings)</li>
             <li>Next n lines: Two space-separated integers start and end</li>
         </ul>
-        
+
         <p><strong>Output Format:</strong></p>
         <ul>
             <li>Each merged interval on a new line: start end (sorted by start time)</li>
         </ul>
-        
+
         <p><strong>Sample:</strong></p>
         <pre>Input:
 4
@@ -163,22 +180,23 @@ Output:
 
     <!-- PAGE BREAK FOR PROBLEM 2 -->
     <div class="page-break problem-section">
-        <h2>Problem 2: Find Heavy Users (30 minutes)</h2>
-        
-        <p><strong>Description:</strong> Given bank transactions, find all users who made 3 or more transactions within any 60-second window.</p>
-        
+        <h2>Problem 2: Find Heavy Users</h2>
+
+        <p><strong>Description:</strong> Given bank transactions, find all users who made 3 or more transactions within
+            any 60-second window.</p>
+
         <p><strong>Input Format:</strong></p>
         <ul>
             <li>First line: Integer n (transactions)</li>
             <li>Next n lines: time user_id (space-separated, transactions sorted by time)</li>
         </ul>
-        
+
         <p><strong>Output Format:</strong></p>
         <ul>
             <li>Space-separated list of user IDs (unique, sorted ascending)</li>
         </ul>
-        
-        <p><strong>Sample:</strong></p>
+
+        <p><strong>Sample 1:</strong></p>
         <pre>Input:
 6
 1 101
@@ -189,9 +207,35 @@ Output:
 101 102
 
 Output:
-101</pre>
+101
+
+Explanation: User 101 has transactions at times 1, 30, 59, 65.
+The 60-second window [5, 65] contains 3 transactions (30, 59, 65).</pre>
+
+<div class="sample-box">
+    <p><strong>Sample 2:</strong></p>
+    <pre>Input:
+8
+10 201
+30 201
+50 201
+70 201
+5 202
+25 202
+45 202
+90 203
+
+Output:
+201 202
+
+Explanation:
+- User 201: 4 transactions at 10, 30, 50, 70 within [10,70] (60s window)
+- User 202: 3 transactions at 5, 25, 45 within [5,65] (60s window)
+- User 203: Only 1 transaction, not flagged</pre>
+</div>
     </div>
 
-
+    </div>
 </body>
+
 </html>
