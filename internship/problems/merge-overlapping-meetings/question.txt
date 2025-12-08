@@ -1,0 +1,44 @@
+PROBLEM 1: Merge Overlapping Meetings (25 minutes)
+---------------------------------------------------
+
+Description:
+Given meeting time intervals, merge all overlapping intervals and output the consolidated schedule.
+
+Input Format:
+- First line: Integer n (number of meetings)
+- Next n lines: Two space-separated integers start and end
+
+Output Format:
+- Each merged interval on a new line: start end (sorted by start time)
+
+Sample Input:
+4
+1 5
+3 7
+8 10
+9 12
+
+Sample Output:
+1 7
+8 12
+
+Input:
+7
+1 10
+2 6
+5 15
+18 20
+21 25
+30 40
+35 45
+
+Output:
+1 15
+18 20
+21 25
+30 45
+
+Explanation: 
+- [1,10], [2,6], and [5,15] all overlap → merged into [1,15]
+- [18,20] and [21,25] are separate, non-overlapping intervals
+- [30,40] and [35,45] overlap → merged into [30,45]
