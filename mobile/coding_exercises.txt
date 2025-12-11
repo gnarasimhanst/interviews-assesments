@@ -1,0 +1,89 @@
+Coding Exercises : React and React Native
+
+Time: 45 min - 1 Hour (SDE2 and below)
+1.Objective: Design a simple 3 screen app to fetch images from Google and display them in a list.
+Screen 1: Search Screen. Users should be able to type in the search string for image query
+Screen 2: The search results of the previous screen should be displayed in this list. The results
+should be displayed as images plus some metadata
+Screen 3: On clicking of any of these images on the previous screen, more details of the image
+should be shown here.
+APIs to be used:
+curl -X GET \
+' https://www.googleapis.com/customsearch/v1?q=harrypotter&cx=011476162607576381860:ra
+4vmliv9ti&key= <API KEY>' \
+-H 'Content-Type: application/json' \
+-H 'cache-control: no-cache’
+Sample JSON Response
+https://pastebin.com/6CqcVDZP
+items[] -> pagemap -> cse
+_
+thumbnail[] -> width | height | src
+items[] -> pagemap -> cse
+_
+image[] -> src
+Please get your own API key from a separate Google project.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Time: 45 min - 1 Hour (SDE2 and below)
+2.Objective: Create a React native app using the apis from https://newsapi.org/
+Milestone 1:
+Show a splash screen with name of the app
+In home screen use the api https://newsapi.org/v1/sources to display a list of Sources available. 
+Each item in list should show all details(title, image, author, desc etc.) available from the api.
+Add a `sort by` menu and toggle the sorting order of the list based on the name of source
+Use redux to keep the list data in a global state(Optional)
+Milestone 2:
+On click of an item in the sources list created above, show the list of articles available under the source. Use the api https://newsapi.org/v1/articles?source={source_id}
+Add sorting option for the list as described in milestone 1
+Use redux to keep the list data in a global state and when user clicks same source for more than once, instead of making an api request everytime use the data from redux store(Optional)
+Milestone 3:
+Onclick of the article item in the above list open the link of the article in a webbrowser or webview
+Add search feature with a link from home screen and use the api https://newsapi.org/v2/everything?q=`searchterm` to search through the available articles
+When user types a text in search bar keep a minimum threshold for search term length
+Keep a minimum threshold time after the user stops typing to make a search request
+
+API KEY: 91a53883772d44bf8ee89d81249d4ac7(need to check this) 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Time: 30 Mins (SSEs and SDE2)
+3.Implement a Robust usePrevious Hook
+Prompt:
+Implement a custom hook usePrevious(value) that returns the previous render’s value without
+causing re-renders.
+Follow-up:
+- Why useRef instead of useState?
+- How would you add a comparator?
+- How do you test this hook?
+- What happens when the value is an object or function?
+
+Time: 30 Mins (SSEs and SDE2)
+4.Debounced Search Component: Build a React component that calls an API only when the user stops typing for 400ms.
+Follow-up discussion points:
+How to cancel stale promises?
+How to extract this into a custom hook?
+How to avoid recreating the debounced function on every render?
+
+Time: 30 Mins (SSEs and SDE2)
+5.Virtualized List for 10,000 Items: Implement a simple windowed list that only renders visible items.
+Follow-up discussion points:
+Handling variable-height rows
+Integration with RN FlatList optimizations
+Detecting near-end scrolling for prefetchin
+
+Time: 30 Mins (SSEs and SDE2)
+6.Mini Key-Value Store with Pub/Sub: Implement a minimal in-memory store with set/get/subscribe.
+Follow-up discussion points:
+How to migrate this to Redux Toolkit?
+How to persist in React Native using MMKV or SQLite?
+
+Time: 30 Mins (SSEs and SDE2)
+7.Deep Compare Effect Hook: Implement useDeepEffect that does deep dep comparison.
+Follow-up:
+- Performance trade-offs
+- Memoizing heavy objects
