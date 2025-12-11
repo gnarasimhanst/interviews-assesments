@@ -1,0 +1,97 @@
+--------------------------------------------------------------------------------
+1. Account ID Stamping Trigger
+--------------------------------------------------------------------------------
+Category    : Easy
+Description : Write a trigger on the Account object to stamp the Account Id of 
+              the record being inserted onto the Description field on the same 
+              Account record.
+Solution    : 
+    //BASIC LOGIC TO IMPLEMENT
+
+    trigger on Account(after insert) {
+    List<Account> accountsToUpdate = new List<Account>();
+    for(Account acc: Trigger.new) {
+    Account accToInsert = new Account();
+    accToInsert.Id = acc.Id;
+    accToInsert.Description = acc.Id;
+    accountsToUpdate.add(accToInsert);
+    }
+    update accountsToUpdate;
+    }
+
+--------------------------------------------------------------------------------
+2. Hierarchy Sharing Trigger
+--------------------------------------------------------------------------------
+Category    : Hard
+Description : Write a trigger to insert share table record for Account till 
+              upper 5 hierarchy for the User .
+              once a account is inserted we will have to share that account to 
+              the upper 5 Managers of the owner of the Account.
+              Schema:
+              Account
+
+--------------------------------------------------------------------------------
+3. Dynamic Metadata & Security Check
+--------------------------------------------------------------------------------
+Category    : Hard
+Description : Given a custom metadata which contains multiple object names as 
+              metadata records. Each metadata record corresponds to one object 
+              name. Write a logic to read through all the metadata records and 
+              generate a list of object name from all the metadata records that 
+              the running/current user has Read access to. From the filtered 
+              list, choose any object and fetch records from that object that 
+              the running/current user has edit access to.
+Solution    : Object level CRUD check can be done using the Schema class.
+              Record level CRUD check can be done using the UserRecordAccess 
+              object or Share object. Limit of the UserRecordAccess object is 
+              that only 200 recordIds can be queried at once.
+
+--------------------------------------------------------------------------------
+4. Invoice Line Item Count
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Write a trigger to show count of invoice line items whose Amount 
+              is greater than 1000 at Account level.(best to have all scenarios 
+              insert, update, delete, undelete)
+              Schema:
+              Account
+              |
+              Invoice
+              |
+              Invoice Line Item
+
+--------------------------------------------------------------------------------
+5. Salary Rollup Trigger
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Following schema is provided:
+
+              Account
+              Total_Salary__c (Number)
+              Max_Salary__c (Number)
+
+              Account_Salary__c
+              Account__c (lookup)
+              Name (String)
+              Salary__c (Number)
+
+              An Account can have multiple Account_Salary__c records that lookup 
+              to an Account by the Account__c.
+
+              Write a trigger that the keeps Total_Salary__c, Max_Salary__c field 
+              on Account up to date.
+Solution    : Can use the AggregateResult approach by using the SUM and MAX 
+              function to find the result.
+              Raw approach would be use Map/List collections to detect change 
+              on the Salary__c field on the Account_Salary__c object and use 
+              those record's data to update the parent Account.
+
+--------------------------------------------------------------------------------
+6. Partial Failures
+--------------------------------------------------------------------------------
+Category    : Easy
+Description : How do you handle partial failures in a transaction where you need 
+              to roll back certain operations but commit others?
+Solution    : Using Savepoints
+              Handling Partial Failures Using Database.insert() or 
+              Database.update() with allOrNone

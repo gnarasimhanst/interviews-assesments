@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+1. Accounts with more than 5 Contacts
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Write a SOQL query to fetch accounts which have more than 5 contacts.
+Solution    : 
+    SELECT Id, Name, (SELECT Id FROM Contacts)
+    FROM Account
+    WHERE Id IN (
+        SELECT AccountId
+        FROM Contact
+        GROUP BY AccountId
+        HAVING COUNT(Id) > 5
+    )
+
+--------------------------------------------------------------------------------
+2. 2nd Highest Scorer
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Write a SOQL query to fetch the 2nd highest scorer from the 
+              Student object.
+Solution    : 
+    SELECT Id, Name 
+    FROM Student__c 
+    ORDER BY Score__c DESC 
+    OFFSET 1 
+    LIMIT 1
+
+--------------------------------------------------------------------------------
+3. Opportunities Closing Soon
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Write a SOQL to find the opportunities which have a Close Date 
+              in the next 30 days.
+Solution    : 
+    SELECT Id, Name, CloseDate
+    FROM Opportunity
+    WHERE CloseDate = NEXT_N_DAYS:30

@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+1. Two Sum
+--------------------------------------------------------------------------------
+Category    : Easy
+Description : Program to return pair of elements from an array that sum up to a given number.
+Solutions   : 
+  - Double for loop (Time: O(n^2))
+  - Negation logic / Hash Map (Time: O(n))
+Notes       : 1st problem in Leetcode
+
+--------------------------------------------------------------------------------
+2. Longest Substring Without Repeating Characters
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Program to return longest substring in a given string without repeating chars.
+Sample I/O  : 
+  - i/p: abcabcbb        -> o/p: abc
+  - i/p: abcdeafbdgcbb   -> o/p: eafbdgc
+  - i/p: pwwkew          -> o/p: wke
+Solutions   : Brute force, Divide and conquer, Sliding Window
+Notes       : 3rd problem in Leetcode
+
+--------------------------------------------------------------------------------
+3. Contains Duplicate
+--------------------------------------------------------------------------------
+Category    : Easy
+Description : Program to return true/false if an array contains duplicates.
+Solutions   : 
+  - Brute force (Time: O(n^2))
+  - Use map/set (Time: O(n))
+Notes       : 217th problem in Leetcode
+
+--------------------------------------------------------------------------------
+4. Frequency Count
+--------------------------------------------------------------------------------
+Category    : Easy
+Description : Count the frequency of each element in an array.
+
+--------------------------------------------------------------------------------
+5. Odd Occurrences
+--------------------------------------------------------------------------------
+Category    : Easy
+Description : Find the number occurring an odd number of times in an array.
+
+--------------------------------------------------------------------------------
+6. Sum Closest to Zero
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Find 2 elements where the sum is closest to 0.
+Sample I/O  : 
+  - i/p: [38, 44, 63, -51, -35, 19, 84, -69, 4, -46] 
+  - o/p: [44, -46]
+
+--------------------------------------------------------------------------------
+7. Custom Substring Search
+--------------------------------------------------------------------------------
+Category    : Medium
+Description : Check whether 1st string is a substring of 2nd string without using 
+              built-in string functions. Also print count if 1st string exists 
+              multiple times.
