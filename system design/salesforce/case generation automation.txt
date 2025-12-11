@@ -1,0 +1,45 @@
+# Scenario: Case Engagement Automation Design
+
+## System Overview
+We have a system architecture involving two platforms:
+
+* **Azure:** Acts as the central master database (System of Record).
+* **Salesforce:** Used by agents for interactive Case management (System of Engagement).
+
+**Sync Process:** Azure pushes new and updated Case data to Salesforce using the Bulk API in batches, approximately every 45-60 minutes.
+
+---
+
+## Data Model Context
+* **Case:** Contains an `Engagement Begin Date` and a lookup to a `Contact Cycle`.
+* **Contact Cycle:** A parent object that defines a communication strategy.
+* **Engagement Frequency:** Child records of Contact Cycle (1:N). Each record defines a specific action:
+    * **Channel:** (Email, SMS, Call)
+    * **Day:** (e.g., 1, 3, 7) - The day to perform the action, relative to the `Engagement Begin Date`.
+
+---
+
+## The Design Challenge
+
+### Part 1: Intelligent Case Routing
+When a Case is created or updated from Azure, we need to automatically stamp the correct `Contact Cycle` onto the record based on criteria from the Case's fields (e.g., Type, Priority).
+
+**Question:**
+How would you design this automation? What tools would you use, and how would you structure the mapping rules to be scalable?
+
+**Extra Requirement:**
+The solution must be easily managed by an admin and must keep Large Data Volumes (LDV) in mind.
+
+### Part 2: Ensuring Data Integrity with the Master System
+Since Azure is the system of record, any updates made to a Case by an agent in Salesforce must be propagated back to Azure.
+
+**Question:**
+Propose a solution to sync these changes back to Azure. Your design should prioritize data integrity, handle potential sync failures, and operate efficiently within Salesforce platform limits.
+
+### Part 3: Time-Based Engagement Automation
+Once a Case has its `Contact Cycle` and `Engagement Begin Date`, we need to kick off a sequence of communications.
+* *Example:* If the Engagement Begin Date is July 8th and an Engagement Frequency record is for "Email" on "Day 3," an email should be sent on July 11th.
+* A single cycle can have many such frequency records.
+
+**Question:**
+Design a process that can schedule and execute these communications for thousands of cases simultaneously. How do you ensure every required SMS, Email, or Call task is triggered on the correct day?

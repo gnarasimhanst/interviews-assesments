@@ -1,0 +1,49 @@
+# System Design: Case Engagement Automation
+
+## Overview
+You're designing a system to automate case engagement across two platforms:
+
+* **Azure:** Source of truth (master database).
+* **Agent Platform (e.g., Web App):** Used by agents for case management. (This could be a web-based UI backed by any stack, e.g., Node.js, React, etc.)
+
+**Data Flow:** Data is pushed from Azure to the agent platform in bulk updates every 45–60 minutes.
+
+---
+
+## Data Model
+
+### Case
+Each Case includes:
+* An `Engagement Start Date`.
+* A reference to a `Contact Cycle`.
+
+### Contact Cycle
+Defines a communication plan and includes **Engagement Frequency** records:
+* **Channel:** Email / SMS / Call.
+* **Day:** When to send, relative to `Engagement Start Date` (e.g., Day 1, 3, 7).
+
+---
+
+## Design Tasks
+
+### 1. Intelligent Case Routing
+When a new or updated Case arrives from Azure, assign it the correct `Contact Cycle` automatically, based on its attributes (e.g., type, priority, region).
+
+**Questions:**
+* How would you design this rule-based mapping?
+* What tools (e.g., rule engine, config file, DB table) would you use?
+* How can this be admin-configurable and scalable for large volumes?
+
+### 2. Syncing Agent Updates Back to Azure
+Agents may update case details in the agent platform. Since Azure is the system of record, those changes must be sent back.
+
+**Questions:**
+* How would you detect changes, validate them, and push updates back to Azure reliably?
+* *Consider:* Data integrity, retries, error logging, and platform/API rate limits.
+
+### 3. Time-Based Communication Triggers
+Once a Case has a `Contact Cycle` and `Engagement Start Date`, communication actions (email, SMS, call) should be scheduled automatically (e.g., Email on Day 3 → July 11 if start is July 8).
+
+**Questions:**
+* How would you schedule and trigger thousands of these time-based actions per day?
+* *Consider:* Scalability, batching, missed triggers, and multichannel support.

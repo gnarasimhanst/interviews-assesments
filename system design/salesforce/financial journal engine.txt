@@ -1,0 +1,33 @@
+# System Design: Universal Financial Journaling Engine
+
+## Problem Description
+The problem we're going to solve is building a Universal Financial Journaling Engine.
+
+Our platform deals with many different financial objects—Invoices, Purchase Orders, Contracts, Budgets, and even custom financial objects our customers create. Currently, there's no single, unified way to track the financial impact of events happening on these records.
+
+## Goal
+We need to design a system that creates an immutable Financial Journal record—a ledger entry—every time a significant financial event occurs on any of these objects.
+
+## System Requirements
+
+### 1. Configurable
+An administrator, without writing code, should be able to specify:
+* Which objects to watch.
+* What events on those objects should trigger a journal entry (e.g., an Invoice status changing to 'Approved').
+* Which fields (like Total Amount) to capture.
+
+### 2. Scalable & Performant
+It must handle high-volume transactions and bulk data loads without slowing down the core application. A single mass update could affect hundreds of thousands of records at once.
+
+### 3. Robust
+It needs a solid logging mechanism to track successes and failures. We cannot afford to miss or incorrectly log financial transactions.
+
+---
+
+## Design Discussion Points
+To solve this, we need to address the following areas:
+
+1.  **Data model or schema:** How do we store the configuration and the resulting journal entries?
+2.  **The code framework:** How do we structure the logic to be generic enough for any object?
+3.  **Handling large data volumes:** Strategies for processing mass updates (batching, async processing, etc.).
+4.  **Error handling and retry mechanism:** How do we ensure data integrity if a journal entry fails to write?

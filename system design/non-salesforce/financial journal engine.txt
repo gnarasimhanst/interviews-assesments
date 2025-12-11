@@ -1,0 +1,47 @@
+# System Design: Universal Financial Journaling Engine
+
+## Overview
+You are building a Universal Financial Journaling Engine for a platform that handles financial entities like Invoices, Purchase Orders, Budgets, Contracts, and custom-defined entities.
+
+## Goal
+Create a system that generates immutable journal entries any time a significant financial event occurs (e.g., invoice status changes to "Approved").
+
+## Requirements
+
+### 1. Configurable
+Admins (non-developers) can define the following via UI or config, with no code changes:
+* Which entities to monitor.
+* Which events trigger journal entries.
+* Which fields to capture.
+
+### 2. Scalable & Performant
+* Must support bulk updates (e.g., 100k+ records).
+* Must operate without slowing down the core platform.
+
+### 3. Robust & Auditable
+* Journal entries must be immutable and traceable.
+* Full logging of failures is required.
+* Must include a retry mechanism with idempotency.
+
+---
+
+## Areas to Cover
+
+1.  **Data Model:**
+    * Journal entry structure.
+    * Configuration storage.
+    * Entity abstraction.
+
+2.  **Architecture:**
+    * Event handling.
+    * Tech stack choices.
+    * Config-driven behavior implementation.
+
+3.  **Bulk Handling:**
+    * Strategies for large volumes.
+    * Performance optimization.
+
+4.  **Error Handling:**
+    * Logging strategies.
+    * Retry mechanisms.
+    * Ensuring idempotency.
